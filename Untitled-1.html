@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Carousel</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .carousel {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .carousel-content {
+            display: flex;
+            overflow: hidden;
+            width: 300px; /* Adjust this to control visible area */
+            height: 500px; /* Adjust this to set image height */
+            border: 1px solid #ccc;
+            margin: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .carousel-content img {
+            width: 500px; /* Images will take the full width of the carousel */
+            height: 100%; /* Images will take the full height of the carousel */
+            object-fit: cover;
+        }
+
+        button {
+            margin: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel">
+        <button id="prevBtn">Previous</button>
+        <div class="carousel-content">
+            <img src="img/banner.png" alt="Image 3">
+            <img src="img/banner.png" alt="Image 1">
+            <img src="img/banner.png" alt="Image 2">
+            <img src="image3.jpg" alt="Image 3">
+            <img src="image1.jpg" alt="Image 1">
+        </div>
+        <button id="nextBtn">Next</button>
+    </div>
+    <script>
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const carouselContent = document.querySelector('.carousel-content');
+        const images = document.querySelectorAll('.carousel-content img');
+
+        let currentIndex = images.length - 1; // Start from the last image
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateCarousel();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateCarousel();
+        });
+
+        function updateCarousel() {
+            const offset = -currentIndex * images[0].width;
+            carouselContent.style.transform = `translateX(${offset}px)`;
+        }
+    </script>
+</body>
+</html>
