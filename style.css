@@ -15,6 +15,7 @@ a{
 }
 img{
     display: block;
+    max-width: 100%;
 }
 li{
     list-style: none;
@@ -22,6 +23,24 @@ li{
 .d-flex{
     display: flex;
     align-items: center;
+}
+@media(max-width: 767px){
+  main{
+    padding: 0 20px !important;
+  }
+  .banner-half-text{
+    flex-wrap: wrap;
+    position: relative;
+    padding-bottom: 55%;
+  }
+  .caption .description{
+    position: absolute;
+    bottom: 50px;
+  }
+  .caption .cta{
+    position: absolute;
+    bottom: -5%;
+  }
 }
 @media(max-width: 992px){
     header{
